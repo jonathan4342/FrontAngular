@@ -1,0 +1,18 @@
+<div class="Box">
+    <form  class="form"  [formGroup]="miFormularioValidado" (submit)="enviarFormulario()">
+      <h1>Login</h1>
+      <div class="input-group flex-nowrap">
+        <span class="input-group-text" id="addon-wrapping">@</span>
+        <input type="email" class="form-control input" placeholder="Email" aria-label="Username" aria-describedby="addon-wrapping"
+        formControlName="email"
+        >
+      </div>
+      <div class="input-group flex-nowrap">
+        <span class="input-group-text "><img src='../../assets/lock.svg' alt="icon" /></span>
+        <input type="password" class="form-control input" placeholder="Password" aria-label="Username" aria-describedby="addon-wrapping"
+        formControlName="password"
+        >
+      </div>
+      <button type="submit"  class="btn btn-outline-primary button">Enviar</button>
+    </form>
+  </div>
