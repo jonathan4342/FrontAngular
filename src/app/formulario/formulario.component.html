@@ -1,18 +1,38 @@
 <div class="Box">
-    <form  class="form"  [formGroup]="miFormularioValidado" (submit)="enviarFormulario()">
+  <div class="containerModal" *ngIf="setModal=== true">
+    <div class="modal" >
+      <button class="X btn btn-outline-primary" (click)="closeModal()">X</button>
+      <h5 [ngClass]="[statusCode == 200 ? 'text-success' : 'text-danger']">{{message}}</h5>
+    </div>
+  </div>
+    
+    <form  class="form"  [formGroup]="miFormularioValidado" (submit)="enviarFormulario()" >
       <h1>Login</h1>
       <div class="input-group flex-nowrap">
-        <span class="input-group-text" id="addon-wrapping">@</span>
+        <span class="input-group-text span" id="addon-wrapping">@</span>
         <input type="email" class="form-control input" placeholder="Email" aria-label="Username" aria-describedby="addon-wrapping"
         formControlName="email"
         >
       </div>
+      <!-- Toast -->
       <div class="input-group flex-nowrap">
-        <span class="input-group-text "><img src='../../assets/lock.svg' alt="icon" /></span>
+        <span class="input-group-text span"><img src='../../assets/lock.svg' alt="icon" /></span>
         <input type="password" class="form-control input" placeholder="Password" aria-label="Username" aria-describedby="addon-wrapping"
         formControlName="password"
         >
       </div>
-      <button type="submit"  class="btn btn-outline-primary button">Enviar</button>
+      <button type="submit"  class="btn btn-outline-primary button" [disabled]="miFormularioValidado.invalid">Enviar</button>
+      <div class="errores">
+        <div *ngIf="email?.errors?.['required'] && email?.touched" class="alert alert-danger">
+          *El campo email es obligatorio*
+        </div>
+        <div *ngIf="email?.errors?.['email'] && email?.touched" class="alert alert-danger">
+          *El campo email no es valido*
+        </div>
+         <div *ngIf="password?.errors?.['required'] && password?.touched"  class="alert alert-danger">
+          *El campo password es obligatorio*
+        </div>
+      </div>
     </form>
   </div>
+  
